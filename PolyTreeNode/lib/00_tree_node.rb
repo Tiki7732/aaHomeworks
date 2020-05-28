@@ -14,10 +14,22 @@ class PolyTreeNode
         self.parent.children.delete(self) unless self.parent.nil?
         @parent = node
         self.parent.children.push(self) unless node.nil?
+        self
     end
 
     def children
         @children
+    end
+
+    def add_child(child_node)
+        child_node.parent = self
+    end
+
+    def remove_child(child_node)
+        if child_node && !self.children.include?(child_node)
+            raise "Not a real child!"
+        end
+        child_node.parent = nil         
     end
 end
 
