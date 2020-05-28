@@ -40,6 +40,17 @@ class PolyTreeNode
         end
         nil
     end
+
+    def bfs(target)
+        search_arr = []
+        search_arr.push(self)
+        while !search_arr.empty?
+            current_node = search_arr.shift
+            return current_node if current_node.value == target
+            search_arr.concat(current_node.children)
+        end
+        nil
+    end
 end
 
 # n1 = PolyTreeNode.new("root1")
